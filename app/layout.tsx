@@ -1,12 +1,14 @@
-import '@/app/globals.css'
-import { Inter as FontSans } from 'next/font/google'
+import { Badge } from '@/components/Badge'
+import { Footer } from '@/components/Footer'
+import { Header } from '@/components/Header'
+import '@/styles/globals.css'
+import styles from '@/styles/Layout.module.css'
+import type { Metadata } from 'next'
 
-import { cn } from '@/lib/utils'
-
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans',
-})
+export const metadata: Metadata = {
+  title: 'Next.js Blog Example with Newt',
+  description: 'NewtとNext.jsを利用したブログです',
+}
 
 export default function RootLayout({
   children,
@@ -14,15 +16,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ja" suppressHydrationWarning>
-      <head />
-      <body
-        className={cn(
-          'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
-        )}
-      >
-        {children}
+    <html lang="ja">
+      <body>
+        <div className={styles.Wrapper}>
+          <Header />
+          {children}
+          <Footer />
+          <Badge />
+        </div>
       </body>
     </html>
   )
